@@ -98,8 +98,10 @@ void AddCarToDatabase(FlyweightFactory& ff, const std::string& portOfCall, const
 }
 
 int main() {
-    FlyweightFactory* factory = new FlyweightFactory(
-            {{"Ice Breaker", "30cm", "Hardened Steel"}, {"Pontoon", "1cm", "Reinforced Nylon"}});
+    std::unique_ptr<FlyweightFactory> factory;
+    factory = std::make_unique<FlyweightFactory>(FlyweightFactory{
+        {"Ice Breaker", "30cm", "Hardened Steel"}, {"Pontoon", "1cm", "Reinforced Nylon"}
+    });
     std::cout << "First list of flyweights: \n";
     factory->ListFlyweights();
     std::cout << "\n.";
@@ -115,6 +117,5 @@ int main() {
     factory->ListFlyweights();
     std::cout << "\n.";
 
-    delete factory;
     return 0;
 }
