@@ -91,7 +91,7 @@ private:
     }
 };
 
-void AddCarToDatabase(FlyweightFactory& ff, const std::string& portOfCall, const std::string& launchDate, const std::string& stereotypeName, const std::string& thickness, const std::string& material) {
+void AddHullToDatabase(FlyweightFactory& ff, const std::string& portOfCall, const std::string& launchDate, const std::string& stereotypeName, const std::string& thickness, const std::string& material) {
     std::cout << "Client: Adding specific hull to database.\n";
     const Flyweight& flyweight = ff.GetFlyweight({stereotypeName, thickness, material});
     flyweight.Operation({launchDate, portOfCall});
@@ -106,11 +106,11 @@ int main() {
     factory->ListFlyweights();
     std::cout << "\n.";
 
-    AddCarToDatabase(*factory, "May 15th", "Santiago", "Ice Breaker", "30cm", "Hardened Steel");
-    AddCarToDatabase(*factory, "June 7th", "Puerto Oro", "Galleon", "16cm", "Black Oak");
+    AddHullToDatabase(*factory, "May 15th", "Santiago", "Ice Breaker", "30cm", "Hardened Steel");
+    AddHullToDatabase(*factory, "June 7th", "Puerto Oro", "Galleon", "16cm", "Black Oak");
     for (int i = 0; i < 1000000000; i++)
     {
-        AddCarToDatabase(*factory, std::to_string(i), "Santiago", "Ice Breaker", "30cm", "Hardened Steel");
+        AddHullToDatabase(*factory, std::to_string(i), "Santiago", "Ice Breaker", "30cm", "Hardened Steel");
     }
 
     std::cout << "Second list of flyweights: \n";
